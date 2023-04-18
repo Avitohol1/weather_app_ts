@@ -1,0 +1,23 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+@use "../../../styles/mixins/breakpoints.scss" as *;
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 18px;
+    width: 33%;
+}
+
+@include mobile {
+    .container {
+        width: 90%;
+    }
+}
+
+@include tablet {
+    .container {
+        width: 60%;
+    }
+}

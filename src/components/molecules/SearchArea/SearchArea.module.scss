@@ -1,0 +1,7 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+
+.container {
+    position: relative;
+    width: 100%;
+}

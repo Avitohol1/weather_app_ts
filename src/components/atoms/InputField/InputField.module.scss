@@ -1,0 +1,54 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+
+.container {
+    position: relative;
+    width: 100%;
+}
+
+.input {
+    height: 36px;
+    width: 100%;
+    padding: 0 1em;
+    font-size: 16px;
+    color: $grey-0;
+    background-color: $grey-700;
+    border: 1px solid $grey-0;
+    border-radius: $radius;
+    &:focus {
+        outline: none;
+        border: 2px solid $cyan-600;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    &::placeholder {
+        text-transform: capitalize;
+    }
+}
+
+.searchBtnContainer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    height: 100%;
+    width: 42px;
+    background-color: $grey-300;
+    border-radius: 0px $radius $radius 0px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid $grey-300;
+    &:hover {
+        background-color: $grey-400;
+        .searchBtn {
+            color: $cyan-300;
+        }
+    }
+}
+
+.searchBtn {
+    height: 100%;
+    color: $grey-0;
+    width: 18px;
+}

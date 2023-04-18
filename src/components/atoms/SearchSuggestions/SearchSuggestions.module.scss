@@ -1,0 +1,34 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    list-style-type: none;
+    background-color: $grey-300;
+}
+
+.searchResult {
+    padding: 0.3em;
+    color: $grey-900;
+    width: 100%;
+    height: 24px;
+    cursor: pointer;
+    .divider {
+        position: absolute;
+        border: 1px solid $grey-900;
+        width: 100%;
+    }
+    &:hover {
+        background-color: $blue-400;
+    }
+}
+
+.countryText {
+    display: inline-block;
+    padding-left: 0.5em;
+    .city {
+        font-weight: 500;
+    }
+}
