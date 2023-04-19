@@ -4,17 +4,21 @@ import { createAsyncThunk } from "@reduxjs/toolkit"
 import { Location } from "../types/Location"
 import urlParams from "../utils/urlParams"
 import { RootState } from "./store"
+import { Weather } from "../types/Weather"
+import { Details } from "../types/Details"
 
 type WeatherState = {
     searchQuery: string
     isDropDownOpen: boolean
     searchSuggestions: Location[]
-    weatherData: []
+    weatherData: Weather
     mainParams: {
         latitude: string
         longitude: string
         tempUnit: string
     }
+    location: Location
+    details: Details
     isLoading: boolean
     msg: { type?: string; text: string }
 }
@@ -23,11 +27,31 @@ const initialState: WeatherState = {
     searchQuery: "",
     isDropDownOpen: false,
     searchSuggestions: [],
-    weatherData: [],
+    weatherData: {},
     mainParams: {
         latitude: "",
         longitude: "",
         tempUnit: "celsius",
+    },
+    location: {
+        id: 0,
+        name: "",
+        country: "",
+        country_code: "",
+        latitude: "",
+        longitude: "",
+    },
+    details: {
+        sunset: "",
+        sunrise: "",
+        apparent_temperature_min: 0,
+        apparent_temperature_max: 0,
+        windspeed: 0,
+        winddirection: 0,
+        precipitation_probability: 0,
+        rain_sum: 0,
+        snowfall_sum: 0,
+        uv_index_max: 0,
     },
     isLoading: false,
     msg: { text: "" },
@@ -103,6 +127,9 @@ const weatherSlice = createSlice({
                 ...newParams,
             }
         },
+        setLocation: (state, action: PayloadAction<Location>) => {
+            state.location = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -110,6 +137,46 @@ const weatherSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(getWeather.fulfilled, (state, action) => {
+                const { winddirection, windspeed } = action.payload.current_weather
+                let details: Details = {
+                    sunset: "",
+                    sunrise: "",
+                    apparent_temperature_min: 0,
+                    apparent_temperature_max: 0,
+                    windspeed: 0,
+                    winddirection: 0,
+                    precipitation_probability: 0,
+                    rain_sum: 0,
+                    snowfall_sum: 0,
+                    uv_index_max: 0,
+                }
+
+                Object.keys(action.payload.daily).forEach((key) => {
+                    if (details.hasOwnProperty(key)) {
+                        details[key] = action.payload.daily[key][0]
+                    }
+                })
+                // const details = new Map<any, any>([
+                //     ["windspeed", windspeed],
+                //     ["winddirection", winddirection],
+                //     ["apparent_temperature_max", 0],
+                //     ["apparent_temperature_min", 0],
+                //     ["precipitation_probability", 0],
+                //     ["rain_sum", 0],
+                //     ["snowfall_sum", 0],
+                //     ["sunrise", ""],
+                //     ["sunset", ""],
+                //     ["uv_index", 0],
+                // // ])
+
+                // Object.keys(action.payload.daily).forEach((key) => {
+                //     if (details.has(key)) {
+                //         details.set(key, action.payload.daily[key][0])
+                //     }
+                // })
+
+                // const detailsObj: Details = Object.fromEntries(details)
+
                 state.isLoading = false
                 state.weatherData = action.payload
             })
@@ -143,5 +210,5 @@ const weatherSlice = createSlice({
 })
 
 export default weatherSlice.reducer
-export const { handleSearchQueryChange, toggleDropdown, handleMainParams } =
+export const { handleSearchQueryChange, toggleDropdown, handleMainParams, setLocation } =
     weatherSlice.actions

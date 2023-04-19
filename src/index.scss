@@ -15,7 +15,12 @@ body,
 
 body {
     font-family: "Ubuntu", sans-serif;
-    background-color: $grey-900;
+    // background-color: $grey-900;
+    background: linear-gradient(
+        180deg,
+        rgba($grey-700, 1),
+        rgba($grey-900, 1)
+    ); // rgba($cyan-600, 0.9) as mid
 }
 
 main {

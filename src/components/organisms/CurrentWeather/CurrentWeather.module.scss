@@ -1,0 +1,23 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/breakpoints.scss" as *;
+
+.container {
+    background-color: $grey-700;
+    border-radius: 3px;
+    border: 1px solid $grey-0;
+    margin-top: 3em;
+    width: 50%;
+    height: 500px;
+}
+
+@include mobile {
+    .container {
+        width: 90%;
+    }
+}
+
+@include tablet {
+    .container {
+        width: 60%;
+    }
+}

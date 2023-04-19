@@ -1,0 +1,6 @@
+@use "../../../styles/mixins/colors.scss" as *;
+
+.temperature {
+    color: $grey-0;
+    font-size: 36px;
+}

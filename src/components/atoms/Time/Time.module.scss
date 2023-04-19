@@ -1,0 +1,22 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/breakpoints.scss" as *;
+
+.time {
+    color: $grey-0;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 0.75em;
+}
+
+@include mobile {
+    .time {
+        display: none;
+    }
+}
+
+@include tablet {
+    .time {
+        font-size: 16px;
+    }
+}

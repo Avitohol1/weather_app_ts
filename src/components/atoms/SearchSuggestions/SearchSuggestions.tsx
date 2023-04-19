@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../store/store"
-import { handleMainParams } from "../../../store/weatherSlice"
+import { handleMainParams, setLocation } from "../../../store/weatherSlice"
 import { Location } from "../../../types/Location"
 import styles from "./SearchSuggestions.module.scss"
 import Flag from "react-world-flags"
@@ -17,6 +17,7 @@ const SearchSuggestions = () => {
                     longitude: location.longitude,
                 })
             )
+            dispatch(setLocation(location))
         }
     }
 

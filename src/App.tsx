@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "./store/store"
 import { useEffect } from "react"
 import { getWeather, getSearchSuggestions, toggleDropdown } from "./store/weatherSlice"
 import Search from "./components/organisms/Search/Search"
+import CurrentWeather from "./components/organisms/CurrentWeather/CurrentWeather"
 
 const App = (): JSX.Element => {
     const { mainParams, searchQuery } = useAppSelector((store) => store.weather)
@@ -9,7 +10,7 @@ const App = (): JSX.Element => {
 
     useEffect(() => {
         const checkClickLocation = (e: any) => {
-            console.log(e.composedPath())
+            // console.log(e.composedPath())
             const arr = [...e.composedPath()]
             const isSearch: boolean = arr.some((el) =>
                 el.id ? el.id.includes("search") : false
@@ -38,6 +39,8 @@ const App = (): JSX.Element => {
     return (
         <main>
             <Search />
+            <CurrentWeather />
+            <div className="current-weather"></div>
         </main>
     )
 }
