@@ -134,11 +134,8 @@ const weatherSlice = createSlice({
                 }
             })
 
-            .addCase(getSearchSuggestions.pending, (state) => {
-                state.isLoading = true
-            })
+            .addCase(getSearchSuggestions.pending, (state) => {})
             .addCase(getSearchSuggestions.fulfilled, (state, action) => {
-                state.isLoading = false
                 if (state.searchQuery.length > 2) {
                     state.searchSuggestions = action.payload
                 } else {
@@ -146,7 +143,6 @@ const weatherSlice = createSlice({
                 }
             })
             .addCase(getSearchSuggestions.rejected, (state, action) => {
-                state.isLoading = false
                 state.msg = {
                     type: "error",
                     text: action.payload as string,

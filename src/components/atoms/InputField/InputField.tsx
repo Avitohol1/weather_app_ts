@@ -9,10 +9,8 @@ const InputField = () => {
     const dispatch = useAppDispatch()
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (typeof e.target.value === "string") {
-            dispatch(handleSearchQueryChange(e.target.value))
-        }
-        return
+        const inputStr: string = e.target.value
+        dispatch(handleSearchQueryChange(inputStr))
     }
     return (
         <div className={styles.container}>

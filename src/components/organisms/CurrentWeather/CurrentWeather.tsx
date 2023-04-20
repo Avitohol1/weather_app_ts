@@ -8,7 +8,11 @@ const CurrentWeather = () => {
     const { weatherData, isLoading } = useAppSelector((store) => store.weather)
 
     if (isLoading) {
-        return <Loader />
+        return (
+            <section className={styles.container}>
+                <Loader />
+            </section>
+        )
     }
 
     return (
