@@ -20,7 +20,6 @@ const WeatherIcon = () => {
     }, [weatherData])
 
     useEffect(() => {
-        console.log(code)
         setIcon(weatherCodes[code].icon)
     }, [code])
 

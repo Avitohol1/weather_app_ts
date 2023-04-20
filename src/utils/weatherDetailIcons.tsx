@@ -5,7 +5,11 @@ import { WiWindDeg } from "react-icons/wi"
 import { TbWind } from "react-icons/tb"
 import { GiRadiations } from "react-icons/gi"
 
-const icons = {
+type Icons = {
+    [key: string]: JSX.Element
+}
+
+const icons: Icons = {
     sunrise: <BsSunrise />,
     sunset: <BsSunset />,
     apparent_temperature_min: <FaTemperatureLow />,
@@ -15,7 +19,7 @@ const icons = {
     precipitation_probability: <BsCloudRain />,
     rain_sum: <BiDroplet />,
     snowfall_sum: <BsSnow />,
-    uv_index: <GiRadiations />,
+    uv_index_max: <GiRadiations />,
 }
 
 export default icons

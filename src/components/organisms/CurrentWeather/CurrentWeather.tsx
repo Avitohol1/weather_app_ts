@@ -1,15 +1,15 @@
-import React from "react"
-import Time from "../../atoms/Time/Time"
-import Location from "../../atoms/Location/Location"
-import WeatherIcon from "../../atoms/WeatherIcon/WeatherIcon"
-import Temperature from "../../atoms/Temperature/Temperature"
+import { useAppSelector } from "../../../store/store"
 import styles from "./CurrentWeather.module.scss"
 import MainWeather from "../../molecules/MainWeather/MainWeather"
+import Details from "../../molecules/Details/Details"
 
 const CurrentWeather = () => {
+    const { weatherData } = useAppSelector((store) => store.weather)
+    console.log(weatherData)
     return (
         <section className={styles.container}>
-            <MainWeather />
+            {Object.keys(weatherData).length !== 0 ? <MainWeather /> : <></>}
+            {Object.keys(weatherData).length !== 0 ? <Details /> : <></>}
         </section>
     )
 }

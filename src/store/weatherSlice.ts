@@ -1,9 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
-import { createAsyncThunk } from "@reduxjs/toolkit"
+import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import dayjs from "dayjs"
 import { Location } from "../types/Location"
-import urlParams from "../utils/urlParams"
-import { RootState } from "./store"
 import { Weather } from "../types/Weather"
 import { Details } from "../types/Details"
 import { getWeatherThunk } from "./thunks/getWeatherThunk"
@@ -111,9 +108,17 @@ const weatherSlice = createSlice({
                     uv_index_max: 0,
                 }
 
-                Object.keys(action.payload.daily).forEach((key) => {
+                Object.keys(action.payload.daily).forEach((key: string) => {
+                    const val: string | number = action.payload.daily[key][0]
                     if (details.hasOwnProperty(key)) {
-                        details[key] = action.payload.daily[key][0]
+                        if (key === "sunset" || key === "sunrise") {
+                            const formattedDate: string = dayjs(val)
+                                .format("HH:mm")
+                                .toString()
+                            details[key] = formattedDate
+                        } else {
+                            details[key] = val
+                        }
                     }
                 })
 

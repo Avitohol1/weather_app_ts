@@ -7,8 +7,10 @@ const MainWeather = () => {
     return (
         <article className={styles.container}>
             <Location />
-            <WeatherIcon />
-            <Temperature />
+            <div className={styles.temperatureContainer}>
+                <WeatherIcon />
+                <Temperature />
+            </div>
         </article>
     )
 }

@@ -6,7 +6,7 @@ const Location = () => {
 
     return (
         <h1 className={styles.h1}>
-            {location.name} {location.country_code}
+            {location.name} {location.country_code} - Mainly Clear
         </h1>
     )
 }

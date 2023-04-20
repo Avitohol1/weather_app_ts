@@ -1,0 +1,26 @@
+@use "../../../styles/mixins/colors.scss" as *;
+
+.detail {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: $grey-100;
+    gap: 9px;
+    margin-bottom: 0.36em;
+
+    .text {
+        font-weight: 400;
+        text-transform: capitalize;
+        font-size: 16px;
+    }
+
+    .value {
+        font-weight: 600;
+        color: $grey-0;
+    }
+
+    .icon {
+        color: $yellow-700;
+    }
+}
