@@ -6,6 +6,8 @@ import urlParams from "../utils/urlParams"
 import { RootState } from "./store"
 import { Weather } from "../types/Weather"
 import { Details } from "../types/Details"
+import { getWeatherThunk } from "./thunks/getWeatherThunk"
+import { getSearchSuggestionsThunk } from "./thunks/getSearchSuggestionsThunk"
 
 type WeatherState = {
     searchQuery: string
@@ -59,52 +61,10 @@ const initialState: WeatherState = {
 
 export const getSearchSuggestions = createAsyncThunk(
     "weather/getSearchSuggestions",
-    async (_, { getState, rejectWithValue }) => {
-        const state = getState() as RootState
-        const { searchQuery } = state.weather
-        const url = new URL(
-            "https://geocoding-api.open-meteo.com/v1/search?&count=5&language=en&format=json"
-        )
-        url.searchParams.set("name", searchQuery)
-        try {
-            const res = await axios.get(url.toString())
-            return res.data.results
-        } catch (err) {
-            if (typeof err === "string") {
-                throw rejectWithValue(err)
-            } else if (err instanceof Error) {
-                throw rejectWithValue(err.message)
-            }
-        }
-    }
+    getSearchSuggestionsThunk
 )
 
-export const getWeather = createAsyncThunk(
-    "weather/getWeather",
-    async (_, { getState, rejectWithValue }) => {
-        const state = getState() as RootState
-        const { latitude, longitude, tempUnit } = state.weather.mainParams
-        const url = new URL("https://api.open-meteo.com/v1/forecast")
-        url.searchParams.set("latitude", latitude)
-        url.searchParams.set("longitude", longitude)
-        url.searchParams.set("temperature_unit", tempUnit)
-        urlParams.forEach((urlParam) => {
-            const [key, value] = Object.entries(urlParam)[0]
-            url.searchParams.set(key, value as string)
-        })
-
-        try {
-            const res = await axios.get(url.toString())
-            return res.data
-        } catch (err) {
-            if (typeof err === "string") {
-                throw rejectWithValue(err)
-            } else if (err instanceof Error) {
-                throw rejectWithValue(err.message)
-            }
-        }
-    }
-)
+export const getWeather = createAsyncThunk("weather/getWeather", getWeatherThunk)
 
 const weatherSlice = createSlice({
     name: "weather",
@@ -143,8 +103,8 @@ const weatherSlice = createSlice({
                     sunrise: "",
                     apparent_temperature_min: 0,
                     apparent_temperature_max: 0,
-                    windspeed: 0,
-                    winddirection: 0,
+                    windspeed,
+                    winddirection,
                     precipitation_probability: 0,
                     rain_sum: 0,
                     snowfall_sum: 0,
@@ -156,28 +116,9 @@ const weatherSlice = createSlice({
                         details[key] = action.payload.daily[key][0]
                     }
                 })
-                // const details = new Map<any, any>([
-                //     ["windspeed", windspeed],
-                //     ["winddirection", winddirection],
-                //     ["apparent_temperature_max", 0],
-                //     ["apparent_temperature_min", 0],
-                //     ["precipitation_probability", 0],
-                //     ["rain_sum", 0],
-                //     ["snowfall_sum", 0],
-                //     ["sunrise", ""],
-                //     ["sunset", ""],
-                //     ["uv_index", 0],
-                // // ])
-
-                // Object.keys(action.payload.daily).forEach((key) => {
-                //     if (details.has(key)) {
-                //         details.set(key, action.payload.daily[key][0])
-                //     }
-                // })
-
-                // const detailsObj: Details = Object.fromEntries(details)
 
                 state.isLoading = false
+                state.details = details
                 state.weatherData = action.payload
             })
             .addCase(getWeather.rejected, (state, action) => {

@@ -12,9 +12,14 @@ const App = (): JSX.Element => {
         const checkClickLocation = (e: any) => {
             // console.log(e.composedPath())
             const arr = [...e.composedPath()]
-            const isSearch: boolean = arr.some((el) =>
-                el.id ? el.id.includes("search") : false
-            )
+            console.log(arr)
+            const isSearch: boolean = arr.some((el) => {
+                if (el.id) {
+                    if (el.id.includes("search") || el.id.includes("searchResult")) {
+                        return false
+                    }
+                }
+            })
             dispatch(toggleDropdown(isSearch))
         }
 
