@@ -16,7 +16,7 @@ const icons: Icons = {
     apparent_temperature_max: <FaTemperatureHigh />,
     windspeed: <TbWind />,
     winddirection: <WiWindDeg />,
-    precipitation_probability: <BsCloudRain />,
+    precipitation_probability_mean: <BsCloudRain />,
     rain_sum: <BiDroplet />,
     snowfall_sum: <BsSnow />,
     uv_index_max: <GiRadiations />,

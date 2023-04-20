@@ -22,7 +22,7 @@ const Details = () => {
                 <Detail
                     detail={{
                         text: "precipitation probability",
-                        key: "precipitation_probability",
+                        key: "precipitation_probability_mean",
                     }}
                 />
                 <Detail detail={{ text: "rain sum", key: "rain_sum" }} />
