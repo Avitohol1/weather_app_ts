@@ -15,7 +15,7 @@ import { BiDroplet } from "react-icons/bi"
 import { WiDayRainMix, WiDayRain, WiDaySnow } from "react-icons/wi"
 import { WeatherCodes } from "../types/WeatherCodes"
 
-const size = 64
+const size = 90
 
 const weatherCodes: WeatherCodes = {
     0: {

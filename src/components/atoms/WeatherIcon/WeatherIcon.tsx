@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../../store/store"
 import { useState, useEffect } from "react"
 import weatherCodes from "../../../utils/weatherCodes"
+import styles from "./WeatherIcon.module.scss"
 
 const WeatherIcon = () => {
     const { weatherData } = useAppSelector((store) => store.weather)
@@ -23,7 +24,7 @@ const WeatherIcon = () => {
         setIcon(weatherCodes[code].icon)
     }, [code])
 
-    return icon
+    return <div className={styles.container}>{icon}</div>
 }
 
 export default WeatherIcon

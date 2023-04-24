@@ -1,6 +1,22 @@
+@use "../../../styles/mixins/breakpoints.scss" as *;
+
+.container {
+    width: 50%;
+}
+
 .temperatureContainer {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 18px;
+}
+
+@include mobile {
+    .container {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@include tablet {
 }
