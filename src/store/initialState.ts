@@ -30,6 +30,13 @@ export const initialState: WeatherState = {
         snowfall_sum: 0,
         uv_index_max: 0,
     },
+    hourlyDetails: {
+        "": {
+            weathercode: 0,
+            temperature_2m: 0,
+            precipitation_probability: 0,
+        },
+    },
     isLoading: false,
     msg: { text: "" },
 }

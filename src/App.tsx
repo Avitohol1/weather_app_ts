@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { getWeather, getSearchSuggestions, toggleDropdown } from "./store/weatherSlice"
 import Search from "./components/organisms/Search/Search"
 import CurrentWeather from "./components/organisms/CurrentWeather/CurrentWeather"
+import { HourlyForecast } from "./components/organisms/HourlyForecast/HourlyForecast"
 
 const App = (): JSX.Element => {
     const { mainParams, searchQuery } = useAppSelector((store) => store.weather)
@@ -10,9 +11,7 @@ const App = (): JSX.Element => {
 
     useEffect(() => {
         const checkClickLocation = (e: any) => {
-            // console.log(e.composedPath())
             const arr = [...e.composedPath()]
-            console.log(arr)
             const isSearch: boolean = arr.some((el) => {
                 if (el.id) {
                     if (el.id.includes("search") || el.id.includes("searchResult")) {
@@ -37,15 +36,13 @@ const App = (): JSX.Element => {
         if (searchQuery.length > 2) {
             dispatch(getWeather())
         }
-        // if (weatherData) {
-        // }
     }, [mainParams])
 
     return (
         <main>
             <Search />
             <CurrentWeather />
-            <div className="current-weather"></div>
+            <HourlyForecast />
         </main>
     )
 }

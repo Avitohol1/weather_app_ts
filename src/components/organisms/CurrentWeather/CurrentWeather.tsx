@@ -3,6 +3,7 @@ import styles from "./CurrentWeather.module.scss"
 import MainWeather from "../../molecules/MainWeather/MainWeather"
 import Details from "../../molecules/Details/Details"
 import Loader from "../../atoms/Loader/Loader"
+import { HourlyForecast } from "../HourlyForecast/HourlyForecast"
 
 const CurrentWeather = () => {
     const { weatherData, isLoading } = useAppSelector((store) => store.weather)

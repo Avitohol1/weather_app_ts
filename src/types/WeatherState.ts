@@ -1,4 +1,5 @@
 import { Details } from "./Details"
+import { HourlyWeatherType } from "./HourlyWeatherType"
 import { Location } from "./Location"
 import { Weather } from "./Weather"
 
@@ -14,6 +15,7 @@ export type WeatherState = {
     }
     location: Location
     details: Details
+    hourlyDetails: HourlyWeatherType
     isLoading: boolean
     msg: { type?: string; text: string }
 }

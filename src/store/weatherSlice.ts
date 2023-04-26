@@ -44,7 +44,8 @@ const weatherSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(getWeather.fulfilled, (state, action) => {
-                const { winddirection, windspeed } = action.payload.current_weather
+                const { data, hourlyDetails } = action.payload
+                const { winddirection, windspeed } = data.current_weather
                 let details: Details = {
                     sunset: "",
                     sunrise: "",
@@ -58,8 +59,8 @@ const weatherSlice = createSlice({
                     uv_index_max: 0,
                 }
 
-                Object.keys(action.payload.daily).forEach((key: string) => {
-                    const val: string | number = action.payload.daily[key][0]
+                Object.keys(data.daily).forEach((key: string) => {
+                    const val: string | number = data.daily[key][0]
                     if (details.hasOwnProperty(key)) {
                         if (key === "sunset" || key === "sunrise") {
                             const formattedDate: string = dayjs(val)
@@ -74,7 +75,8 @@ const weatherSlice = createSlice({
 
                 state.isLoading = false
                 state.details = details
-                state.weatherData = action.payload
+                state.hourlyDetails = hourlyDetails
+                state.weatherData = data
             })
             .addCase(getWeather.rejected, (state, action) => {
                 state.isLoading = false
