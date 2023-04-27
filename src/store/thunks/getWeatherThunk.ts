@@ -1,6 +1,7 @@
 import { RootState } from "../store"
 import customFetchWeather from "../../utils/axios/customFetchWeather"
 import { HourlyWeatherType } from "../../types/HourlyWeatherType"
+import dayjs from "dayjs"
 
 export const getWeatherThunk = async (_: void, thunkAPI: any) => {
     const state = thunkAPI.getState() as RootState
@@ -16,16 +17,15 @@ export const getWeatherThunk = async (_: void, thunkAPI: any) => {
         const { data } = res
         const { hourly } = data
 
-        const timeKey = hourly.time[0]
-        let hourlyDetails: HourlyWeatherType = {
-            [timeKey]: {
-                weathercode: 0,
-                temperature_2m: 0,
-                precipitation_probability: 0,
-            },
-        }
+        let hourlyDetails: HourlyWeatherType = {}
 
-        for (let i: number = 0; i < 35; i++) {
+        // get current hour info as index of 'hourly' array
+        const startIndex = parseInt(dayjs().format("HH"))
+        console.log(startIndex)
+        // get 24 hours info
+        const endIndex = startIndex + 23
+
+        for (let i: number = startIndex; i < endIndex; i++) {
             const timeKey = hourly.time[i]
             const weathercode = hourly.weathercode[i]
             const temperature_2m = hourly.temperature_2m[i]

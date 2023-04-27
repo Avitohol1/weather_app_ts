@@ -1,3 +1,51 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+@use "../../../styles/mixins/breakpoints.scss" as *;
+
 .forecast {
     height: 400px;
+}
+
+.carousel {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.slider {
+    text-align: center;
+}
+
+.btnNext,
+.btnBack {
+    cursor: pointer;
+    background-color: transparent;
+    color: $grey-0;
+    border: none;
+    font-size: 36px;
+    position: absolute;
+}
+
+.btnNext {
+    right: -20px;
+    top: 20%;
+}
+
+.btnBack {
+    left: -20px;
+    top: 20%;
+}
+
+.hour {
+    color: $grey-0;
+    font-size: 12px;
+}
+
+@include mobile {
+    .carousel {
+        width: 90%;
+    }
+}
+
+@include tablet {
 }

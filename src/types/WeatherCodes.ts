@@ -1,6 +1,8 @@
 export type WeatherCodes = {
     [code: number]: {
         description: string
-        icon: JSX.Element
+        icon: {
+            [key: string]: JSX.Element
+        }
     }
 }

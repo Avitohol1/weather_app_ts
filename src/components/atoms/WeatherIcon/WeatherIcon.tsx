@@ -1,29 +1,10 @@
-import { useAppSelector } from "../../../store/store"
-import { useState, useEffect } from "react"
-import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./WeatherIcon.module.scss"
 
-const WeatherIcon = () => {
-    const { weatherData } = useAppSelector((store) => store.weather)
-    const [code, setCode] = useState<number>(100)
-    const [icon, setIcon] = useState<JSX.Element>(<></>)
+type Props = {
+    icon: JSX.Element
+}
 
-    useEffect(() => {
-        if (
-            weatherData.current_weather?.weathercode ||
-            weatherData.current_weather?.weathercode === 0
-        ) {
-            setCode(weatherData.current_weather?.weathercode)
-        } else {
-            // error code
-            setCode(100)
-        }
-    }, [weatherData])
-
-    useEffect(() => {
-        setIcon(weatherCodes[code].icon)
-    }, [code])
-
+const WeatherIcon = ({ icon }: Props) => {
     return <div className={styles.container}>{icon}</div>
 }
 

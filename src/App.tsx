@@ -3,10 +3,13 @@ import { useEffect } from "react"
 import { getWeather, getSearchSuggestions, toggleDropdown } from "./store/weatherSlice"
 import Search from "./components/organisms/Search/Search"
 import CurrentWeather from "./components/organisms/CurrentWeather/CurrentWeather"
-import { HourlyForecast } from "./components/organisms/HourlyForecast/HourlyForecast"
+import Forecast from "./components/organisms/Forecast/Forecast"
+import Loader from "./components/atoms/Loader/Loader"
 
 const App = (): JSX.Element => {
-    const { mainParams, searchQuery } = useAppSelector((store) => store.weather)
+    const { mainParams, searchQuery, isLoading } = useAppSelector(
+        (store) => store.weather
+    )
     const dispatch = useAppDispatch()
 
     useEffect(() => {
@@ -41,8 +44,16 @@ const App = (): JSX.Element => {
     return (
         <main>
             <Search />
-            <CurrentWeather />
-            <HourlyForecast />
+            {isLoading ? (
+                <section className="weather-container">
+                    <Loader />
+                </section>
+            ) : (
+                <section className="weather-container">
+                    <CurrentWeather />
+                    <Forecast />
+                </section>
+            )}
         </main>
     )
 }
