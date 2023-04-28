@@ -4,7 +4,7 @@ import { CarouselProvider, Slider, Slide } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
 
 const HourlyDetail = () => {
-    const { hourlyDetails } = useAppSelector((store) => store.weather)
+    const { hourly } = useAppSelector((store) => store.weather)
 
     return <></>
 }

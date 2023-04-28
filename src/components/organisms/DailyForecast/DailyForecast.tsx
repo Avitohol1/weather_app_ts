@@ -1,5 +1,4 @@
 import { useAppSelector } from "../../../store/store"
-import weatherCodes from "../../../utils/weatherCodes"
 import {
     CarouselProvider,
     Slider,
@@ -7,40 +6,38 @@ import {
     ButtonBack,
     ButtonNext,
 } from "pure-react-carousel"
-import "pure-react-carousel/dist/react-carousel.es.css"
-
-import styles from "./HourlyForecast.module.scss"
 import WeatherIcon from "../../atoms/WeatherIcon/WeatherIcon"
 import Temperature from "../../atoms/Temperature/Temperature"
 import dayjs from "dayjs"
+import weatherCodes from "../../../utils/weatherCodes"
+import styles from "./DailyForecast.module.scss"
 
-export const HourlyForecast = () => {
-    const { hourly } = useAppSelector((store) => store.weather)
-
+const DailyForecast = () => {
+    const { daily } = useAppSelector((store) => store.weather)
     return (
         <CarouselProvider
             naturalSlideHeight={300}
             naturalSlideWidth={250}
-            totalSlides={36}
-            visibleSlides={6}
+            totalSlides={7}
+            visibleSlides={5}
             isPlaying={true}
-            step={2}
+            step={1}
             className={styles.carousel}
         >
             <ButtonBack className={styles.btnBack}>
                 <span>&lt;</span>
             </ButtonBack>
             <Slider className={styles.slider}>
-                {Object.keys(hourly).map((hour, index) => {
-                    const temp: number = hourly[hour]["temperature_2m"]
-                    const prec_prob: number = hourly[hour]["precipitation_probability"]
-                    const weathercode: number = hourly[hour]["weathercode"]
+                {Object.keys(daily).map((day, index) => {
+                    const temp: number = daily[day]["temperature"]
+                    // const prec_prob: number = daily[day]["precipitation_probability"]
+                    const weathercode: number = daily[day]["weathercode"]
                     return (
                         <Slide key={index} index={index}>
                             <div className={styles.container}>
                                 <WeatherIcon icon={weatherCodes[weathercode].icon.xs} />
-                                <span className={styles.hour}>
-                                    {dayjs(hour).format("HH:mm")}
+                                <span className={styles.day}>
+                                    {dayjs(day).format("DD.MM")}
                                 </span>
                                 <Temperature fontSize={"16px"} temp={temp} />
                             </div>
@@ -55,3 +52,5 @@ export const HourlyForecast = () => {
         </CarouselProvider>
     )
 }
+
+export default DailyForecast

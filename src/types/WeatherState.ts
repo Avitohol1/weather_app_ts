@@ -1,3 +1,4 @@
+import { DailyWeatherType } from "./DailyWeatherType"
 import { Details } from "./Details"
 import { HourlyWeatherType } from "./HourlyWeatherType"
 import { Location } from "./Location"
@@ -15,7 +16,8 @@ export type WeatherState = {
     }
     location: Location
     details: Details
-    hourlyDetails: HourlyWeatherType
+    hourly: HourlyWeatherType
+    daily: DailyWeatherType
     activeTab: "daily" | "hourly"
     isLoading: boolean
     msg: { type?: string; text: string }

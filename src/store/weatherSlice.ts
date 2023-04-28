@@ -47,7 +47,11 @@ const weatherSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(getWeather.fulfilled, (state, action) => {
-                const { data, hourlyDetails } = action.payload
+                const {
+                    data,
+                    hourlyDetails: hourly,
+                    dailyDetails: daily,
+                } = action.payload
                 const { winddirection, windspeed } = data.current_weather
                 let details: Details = {
                     sunset: "",
@@ -78,7 +82,8 @@ const weatherSlice = createSlice({
 
                 state.isLoading = false
                 state.details = details
-                state.hourlyDetails = hourlyDetails
+                state.hourly = hourly
+                state.daily = daily
                 state.weatherData = data
             })
             .addCase(getWeather.rejected, (state, action) => {
