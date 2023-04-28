@@ -23,6 +23,8 @@ export const HourlyForecast = () => {
             naturalSlideWidth={250}
             totalSlides={36}
             visibleSlides={6}
+            isPlaying={true}
+            step={2}
             className={styles.carousel}
         >
             <ButtonBack className={styles.btnBack}>
