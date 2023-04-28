@@ -1,0 +1,21 @@
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
+
+.tab {
+    width: 50%;
+    color: $grey-0;
+    background-color: transparent;
+    border: 1.5px solid $grey-600;
+    border-radius: $radius;
+    padding: 0.42em 0;
+    text-align: center;
+    transition: $transition;
+    text-transform: capitalize;
+    &:hover {
+        cursor: pointer;
+        background-color: $grey-800;
+    }
+    &.active {
+        background-color: $grey-800;
+    }
+}

@@ -37,6 +37,7 @@ export const initialState: WeatherState = {
             precipitation_probability: 0,
         },
     },
+    activeTab: "hourly",
     isLoading: false,
     msg: { text: "" },
 }

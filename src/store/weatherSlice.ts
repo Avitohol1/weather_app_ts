@@ -37,6 +37,9 @@ const weatherSlice = createSlice({
         setLocation: (state, action: PayloadAction<Location>) => {
             state.location = action.payload
         },
+        changeTab: (state, action: PayloadAction<"daily" | "hourly">) => {
+            state.activeTab = action.payload
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -104,5 +107,10 @@ const weatherSlice = createSlice({
 })
 
 export default weatherSlice.reducer
-export const { handleSearchQueryChange, toggleDropdown, handleMainParams, setLocation } =
-    weatherSlice.actions
+export const {
+    handleSearchQueryChange,
+    toggleDropdown,
+    handleMainParams,
+    setLocation,
+    changeTab,
+} = weatherSlice.actions

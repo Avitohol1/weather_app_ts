@@ -5,6 +5,8 @@ import Search from "./components/organisms/Search/Search"
 import CurrentWeather from "./components/organisms/CurrentWeather/CurrentWeather"
 import Forecast from "./components/organisms/Forecast/Forecast"
 import Loader from "./components/atoms/Loader/Loader"
+import Tab from "./components/atoms/Tab/Tab"
+import Tabs from "./components/molecules/Tabs/Tabs"
 
 const App = (): JSX.Element => {
     const { searchQuery, isLoading, weatherData } = useAppSelector(
@@ -45,6 +47,8 @@ const App = (): JSX.Element => {
             ) : (
                 <section className="weather-container">
                     {Object.keys(weatherData).length !== 0 ? <CurrentWeather /> : <></>}
+                    <Tabs />
+
                     {Object.keys(weatherData).length !== 0 ? <Forecast /> : <></>}
                 </section>
             )}

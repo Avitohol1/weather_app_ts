@@ -16,6 +16,7 @@ export type WeatherState = {
     location: Location
     details: Details
     hourlyDetails: HourlyWeatherType
+    activeTab: "daily" | "hourly"
     isLoading: boolean
     msg: { type?: string; text: string }
 }
