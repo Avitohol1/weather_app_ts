@@ -5,6 +5,7 @@ export const initialState: WeatherState = {
     isDropDownOpen: false,
     searchSuggestions: [],
     weatherData: {},
+    date: "",
     mainParams: {
         latitude: "",
         longitude: "",
@@ -23,8 +24,10 @@ export const initialState: WeatherState = {
         sunrise: "",
         apparent_temperature_min: 0,
         apparent_temperature_max: 0,
+        temperature: 0,
         windspeed: 0,
         winddirection: 0,
+        weathercode: 0,
         precipitation_probability_mean: 0,
         rain_sum: 0,
         snowfall_sum: 0,

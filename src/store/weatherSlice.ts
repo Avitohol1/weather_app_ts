@@ -27,6 +27,9 @@ const weatherSlice = createSlice({
         setWeatherData: (state, action) => {
             state.weatherData = action.payload
         },
+        changeDate: (state, action: PayloadAction<string>) => {
+            state.date = action.payload
+        },
         handleMainParams: (state, action: PayloadAction<{ [k: string]: string }>) => {
             const newParams = action.payload
             state.mainParams = {
@@ -58,8 +61,10 @@ const weatherSlice = createSlice({
                     sunrise: "",
                     apparent_temperature_min: 0,
                     apparent_temperature_max: 0,
+                    temperature: 0,
                     windspeed,
                     winddirection,
+                    weathercode: 0,
                     precipitation_probability_mean: 0,
                     rain_sum: 0,
                     snowfall_sum: 0,
@@ -78,7 +83,14 @@ const weatherSlice = createSlice({
                             details[key] = val
                         }
                     }
+                    // Set the date to first day (today)
+                    state.date = data.daily.time[0]
                 })
+
+                details.temperature =
+                    (details.apparent_temperature_min +
+                        details.apparent_temperature_max) /
+                    2
 
                 state.isLoading = false
                 state.details = details
@@ -116,6 +128,7 @@ export const {
     handleSearchQueryChange,
     toggleDropdown,
     handleMainParams,
+    changeDate,
     setLocation,
     changeTab,
 } = weatherSlice.actions

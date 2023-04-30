@@ -13,7 +13,7 @@ type PropType = {
 }
 
 const Detail = ({ detail }: PropType) => {
-    const { details } = useAppSelector((store) => store.weather)
+    const { daily, date } = useAppSelector((store) => store.weather)
     const { text, key, unit } = detail
     const icon: JSX.Element = icons[key]
     const uvIndexText: string = detail.uv_code ? uvIndex(Math.round(detail.uv_code)) : ""
@@ -23,7 +23,7 @@ const Detail = ({ detail }: PropType) => {
             <span className={styles.icon}>{icon}</span>
             <span className={styles.text}>{text}</span>
             <span className={styles.value}>
-                {details[key]} {uvIndexText}
+                {daily[date][key]} {uvIndexText}
                 {unit}
             </span>
         </li>

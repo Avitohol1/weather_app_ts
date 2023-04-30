@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../../store/store"
+import { useAppDispatch, useAppSelector } from "../../../store/store"
 import {
     CarouselProvider,
     Slider,
@@ -11,9 +11,18 @@ import Temperature from "../../atoms/Temperature/Temperature"
 import dayjs from "dayjs"
 import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./DailyForecast.module.scss"
+import { changeDate } from "../../../store/weatherSlice"
 
 const DailyForecast = () => {
-    const { daily } = useAppSelector((store) => store.weather)
+    const { daily, mainParams } = useAppSelector((store) => store.weather)
+    const dispatch = useAppDispatch()
+
+    const units = mainParams.tempUnit === "celsius" ? "°C" : "°F"
+
+    const handleDayChange = (day: string) => {
+        dispatch(changeDate(day))
+    }
+
     return (
         <CarouselProvider
             naturalSlideHeight={300}
@@ -34,12 +43,19 @@ const DailyForecast = () => {
                     const weathercode: number = daily[day]["weathercode"]
                     return (
                         <Slide key={index} index={index}>
-                            <div className={styles.container}>
+                            <div
+                                className={styles.container}
+                                onClick={() => handleDayChange(day)}
+                            >
                                 <WeatherIcon icon={weatherCodes[weathercode].icon.xs} />
                                 <span className={styles.day}>
                                     {dayjs(day).format("DD.MM")}
                                 </span>
-                                <Temperature fontSize={"16px"} temp={temp} />
+                                <Temperature
+                                    fontSize={"16px"}
+                                    temperature={temp}
+                                    units={units}
+                                />
                             </div>
                         </Slide>
                     )

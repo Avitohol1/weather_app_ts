@@ -21,8 +21,6 @@ export const getWeatherThunk = async (_: void, thunkAPI: any) => {
         let hourlyDetails: HourlyWeatherType = {}
         let dailyDetails: DailyWeatherType = {}
 
-        console.log(daily)
-
         // get current hour info as index of 'hourly' array
         const startIndex = parseInt(dayjs().format("HH"))
         // get 24 hours info

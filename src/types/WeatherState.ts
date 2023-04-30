@@ -9,6 +9,7 @@ export type WeatherState = {
     isDropDownOpen: boolean
     searchSuggestions: Location[]
     weatherData: Weather
+    date: string
     mainParams: {
         latitude: string
         longitude: string
