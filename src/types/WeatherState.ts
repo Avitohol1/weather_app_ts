@@ -2,13 +2,10 @@ import { DailyWeatherType } from "./DailyWeatherType"
 import { Details } from "./Details"
 import { HourlyWeatherType } from "./HourlyWeatherType"
 import { Location } from "./Location"
-import { Weather } from "./Weather"
-
 export type WeatherState = {
     searchQuery: string
     isDropDownOpen: boolean
     searchSuggestions: Location[]
-    weatherData: Weather
     date: string
     mainParams: {
         latitude: string

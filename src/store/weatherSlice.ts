@@ -24,9 +24,6 @@ const weatherSlice = createSlice({
         toggleDropdown: (state, action: PayloadAction<boolean>) => {
             state.isDropDownOpen = action.payload
         },
-        setWeatherData: (state, action) => {
-            state.weatherData = action.payload
-        },
         changeDate: (state, action: PayloadAction<string>) => {
             state.date = action.payload
         },
@@ -50,12 +47,10 @@ const weatherSlice = createSlice({
                 state.isLoading = true
             })
             .addCase(getWeather.fulfilled, (state, action) => {
-                const {
-                    data,
-                    hourlyDetails: hourly,
-                    dailyDetails: daily,
-                } = action.payload
-                const { winddirection, windspeed } = data.current_weather
+                const { hourlyDetails: hourly, dailyDetails: daily } = action.payload!
+                const today = Object.values(daily)[0]
+                const winddirection = today["winddirection"]
+                const windspeed = today["windspeed"]
                 let details: Details = {
                     sunset: "",
                     sunrise: "",
@@ -71,8 +66,8 @@ const weatherSlice = createSlice({
                     uv_index_max: 0,
                 }
 
-                Object.keys(data.daily).forEach((key: string) => {
-                    const val: string | number = data.daily[key][0]
+                Object.keys(today).forEach((key: string) => {
+                    const val: string | number = today[key]
                     if (details.hasOwnProperty(key)) {
                         if (key === "sunset" || key === "sunrise") {
                             const formattedDate: string = dayjs(val)
@@ -83,8 +78,6 @@ const weatherSlice = createSlice({
                             details[key] = val
                         }
                     }
-                    // Set the date to first day (today)
-                    state.date = data.daily.time[0]
                 })
 
                 details.temperature =
@@ -92,11 +85,15 @@ const weatherSlice = createSlice({
                         details.apparent_temperature_max) /
                     2
 
-                state.isLoading = false
-                state.details = details
-                state.hourly = hourly
-                state.daily = daily
-                state.weatherData = data
+                return {
+                    ...state,
+                    // Set the date to first day (today)
+                    date: Object.keys(daily)[0],
+                    isLoading: false,
+                    details,
+                    hourly,
+                    daily,
+                }
             })
             .addCase(getWeather.rejected, (state, action) => {
                 state.isLoading = false

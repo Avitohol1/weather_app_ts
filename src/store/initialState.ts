@@ -4,7 +4,6 @@ export const initialState: WeatherState = {
     searchQuery: "",
     isDropDownOpen: false,
     searchSuggestions: [],
-    weatherData: {},
     date: "",
     mainParams: {
         latitude: "",

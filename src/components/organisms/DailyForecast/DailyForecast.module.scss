@@ -36,11 +36,6 @@
     top: 20%;
 }
 
-.day {
-    color: $grey-0;
-    font-size: 12px;
-}
-
 @include mobile {
     .carousel {
         width: 90%;

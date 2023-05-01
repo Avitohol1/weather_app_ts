@@ -6,12 +6,11 @@ import {
     ButtonBack,
     ButtonNext,
 } from "pure-react-carousel"
-import WeatherIcon from "../../atoms/WeatherIcon/WeatherIcon"
-import Temperature from "../../atoms/Temperature/Temperature"
 import dayjs from "dayjs"
 import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./DailyForecast.module.scss"
 import { changeDate } from "../../../store/weatherSlice"
+import ForecastDetail from "../../molecules/ForecastDetail/ForecastDetail"
 
 const DailyForecast = () => {
     const { daily, mainParams } = useAppSelector((store) => store.weather)
@@ -39,24 +38,19 @@ const DailyForecast = () => {
             <Slider className={styles.slider}>
                 {Object.keys(daily).map((day, index) => {
                     const temp: number = daily[day]["temperature"]
-                    // const prec_prob: number = daily[day]["precipitation_probability"]
                     const weathercode: number = daily[day]["weathercode"]
                     return (
-                        <Slide key={index} index={index}>
-                            <div
-                                className={styles.container}
-                                onClick={() => handleDayChange(day)}
-                            >
-                                <WeatherIcon icon={weatherCodes[weathercode].icon.xs} />
-                                <span className={styles.day}>
-                                    {dayjs(day).format("DD.MM")}
-                                </span>
-                                <Temperature
-                                    fontSize={"16px"}
-                                    temperature={temp}
-                                    units={units}
-                                />
-                            </div>
+                        <Slide
+                            key={index}
+                            index={index}
+                            onClick={() => handleDayChange(day)}
+                        >
+                            <ForecastDetail
+                                icon={weatherCodes[weathercode].icon.xs}
+                                time={dayjs(day).format("DD.MM")}
+                                temp={temp}
+                                units={units}
+                            />
                         </Slide>
                     )
                 })}

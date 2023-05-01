@@ -1,23 +1,16 @@
-import { useAppSelector } from "../../../store/store"
-import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./Location.module.scss"
 
-const Location = () => {
-    const { location, weatherData } = useAppSelector((store) => store.weather)
-    let code: number = 0
+type PropType = {
+    name: string
+    country_code: string
+    description: string
+}
 
-    if (
-        weatherData.current_weather?.weathercode ||
-        weatherData.current_weather?.weathercode === 0
-    ) {
-        code = weatherData.current_weather?.weathercode
-    } else {
-        code = 100
-    }
-
+const Location = ({ name, country_code, description }: PropType) => {
     return (
         <h1 className={styles.h1}>
-            {location.name} {location.country_code} - {weatherCodes[code].description}
+            {name} {country_code} -{" "}
+            <span className={styles.description}>{description}</span>
         </h1>
     )
 }

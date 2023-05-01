@@ -10,12 +10,13 @@ import {
 import "pure-react-carousel/dist/react-carousel.es.css"
 
 import styles from "./HourlyForecast.module.scss"
-import WeatherIcon from "../../atoms/WeatherIcon/WeatherIcon"
-import Temperature from "../../atoms/Temperature/Temperature"
 import dayjs from "dayjs"
+import ForecastDetail from "../../molecules/ForecastDetail/ForecastDetail"
 
 export const HourlyForecast = () => {
-    const { hourly } = useAppSelector((store) => store.weather)
+    const { hourly, mainParams } = useAppSelector((store) => store.weather)
+
+    const units = mainParams.tempUnit === "celsius" ? "°C" : "°F"
 
     return (
         <CarouselProvider
@@ -33,17 +34,15 @@ export const HourlyForecast = () => {
             <Slider className={styles.slider}>
                 {Object.keys(hourly).map((hour, index) => {
                     const temp: number = hourly[hour]["temperature_2m"]
-                    const prec_prob: number = hourly[hour]["precipitation_probability"]
                     const weathercode: number = hourly[hour]["weathercode"]
                     return (
                         <Slide key={index} index={index}>
-                            <div className={styles.container}>
-                                <WeatherIcon icon={weatherCodes[weathercode].icon.xs} />
-                                <span className={styles.hour}>
-                                    {dayjs(hour).format("HH:mm")}
-                                </span>
-                                <Temperature fontSize={"16px"} temp={temp} />
-                            </div>
+                            <ForecastDetail
+                                icon={weatherCodes[weathercode].icon.xs}
+                                time={dayjs(hour).format("HH:mm")}
+                                temp={temp}
+                                units={units}
+                            />
                         </Slide>
                     )
                 })}

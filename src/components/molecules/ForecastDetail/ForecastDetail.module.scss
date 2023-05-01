@@ -1,0 +1,6 @@
+@use "../../../styles/mixins/colors.scss" as *;
+
+.time {
+    color: $grey-0;
+    font-size: 12px;
+}

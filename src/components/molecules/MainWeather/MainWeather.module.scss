@@ -1,7 +1,10 @@
 @use "../../../styles/mixins/breakpoints.scss" as *;
 
 .container {
-    width: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 36px;
 }
 
 .temperatureContainer {
@@ -11,12 +14,38 @@
     gap: 18px;
 }
 
+.main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+    animation: fadeIn 1s;
+}
+
 @include mobile {
     .container {
         width: 100%;
         text-align: center;
     }
+    .main {
+        flex-direction: column;
+        justify-content: normal;
+    }
 }
 
 @include tablet {
+    .main {
+        flex-direction: column;
+        justify-content: normal;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
 }
