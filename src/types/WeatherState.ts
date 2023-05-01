@@ -1,5 +1,4 @@
 import { DailyWeatherType } from "./DailyWeatherType"
-import { Details } from "./Details"
 import { HourlyWeatherType } from "./HourlyWeatherType"
 import { Location } from "./Location"
 export type WeatherState = {
@@ -13,7 +12,6 @@ export type WeatherState = {
         tempUnit: string
     }
     location: Location
-    details: Details
     hourly: HourlyWeatherType
     daily: DailyWeatherType
     activeTab: "daily" | "hourly"

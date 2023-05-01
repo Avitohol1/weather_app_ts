@@ -4,7 +4,7 @@ import Detail from "../../atoms/Detail/Detail"
 import styles from "./Details.module.scss"
 
 const Details = () => {
-    const { mainParams, details } = useAppSelector((store) => store.weather)
+    const { mainParams, daily, date } = useAppSelector((store) => store.weather)
     const tempUnit = mainParams.tempUnit === "celsius" ? "°C" : "°F"
 
     return (
@@ -60,7 +60,7 @@ const Details = () => {
                     detail={{
                         text: "uv index",
                         key: "uv_index_max",
-                        uv_code: details.uv_index_max,
+                        uv_code: daily[date].uv_index_max,
                     }}
                 />
                 <Detail

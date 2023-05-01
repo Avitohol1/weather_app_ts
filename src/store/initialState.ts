@@ -18,20 +18,6 @@ export const initialState: WeatherState = {
         latitude: "",
         longitude: "",
     },
-    details: {
-        sunset: "",
-        sunrise: "",
-        apparent_temperature_min: 0,
-        apparent_temperature_max: 0,
-        temperature: 0,
-        windspeed: 0,
-        winddirection: 0,
-        weathercode: 0,
-        precipitation_probability_mean: 0,
-        rain_sum: 0,
-        snowfall_sum: 0,
-        uv_index_max: 0,
-    },
     hourly: {
         "": {
             weathercode: 0,

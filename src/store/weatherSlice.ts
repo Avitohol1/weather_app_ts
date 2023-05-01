@@ -1,8 +1,6 @@
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { initialState } from "./initialState"
-import dayjs from "dayjs"
 import { Location } from "../types/Location"
-import { Details } from "../types/Details"
 import { getWeatherThunk } from "./thunks/getWeatherThunk"
 import { getSearchSuggestionsThunk } from "./thunks/getSearchSuggestionsThunk"
 
@@ -48,49 +46,12 @@ const weatherSlice = createSlice({
             })
             .addCase(getWeather.fulfilled, (state, action) => {
                 const { hourlyDetails: hourly, dailyDetails: daily } = action.payload!
-                const today = Object.values(daily)[0]
-                const winddirection = today["winddirection"]
-                const windspeed = today["windspeed"]
-                let details: Details = {
-                    sunset: "",
-                    sunrise: "",
-                    apparent_temperature_min: 0,
-                    apparent_temperature_max: 0,
-                    temperature: 0,
-                    windspeed,
-                    winddirection,
-                    weathercode: 0,
-                    precipitation_probability_mean: 0,
-                    rain_sum: 0,
-                    snowfall_sum: 0,
-                    uv_index_max: 0,
-                }
-
-                Object.keys(today).forEach((key: string) => {
-                    const val: string | number = today[key]
-                    if (details.hasOwnProperty(key)) {
-                        if (key === "sunset" || key === "sunrise") {
-                            const formattedDate: string = dayjs(val)
-                                .format("HH:mm")
-                                .toString()
-                            details[key] = formattedDate
-                        } else {
-                            details[key] = val
-                        }
-                    }
-                })
-
-                details.temperature =
-                    (details.apparent_temperature_min +
-                        details.apparent_temperature_max) /
-                    2
 
                 return {
                     ...state,
                     // Set the date to first day (today)
                     date: Object.keys(daily)[0],
                     isLoading: false,
-                    details,
                     hourly,
                     daily,
                 }

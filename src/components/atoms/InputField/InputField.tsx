@@ -12,6 +12,7 @@ const InputField = () => {
         const inputStr: string = e.target.value
         dispatch(handleSearchQueryChange(inputStr))
     }
+
     return (
         <div className={styles.container}>
             <input
