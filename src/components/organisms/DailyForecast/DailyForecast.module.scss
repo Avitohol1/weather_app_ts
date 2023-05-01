@@ -2,10 +2,6 @@
 @use "../../../styles/mixins/misc.scss" as *;
 @use "../../../styles/mixins/breakpoints.scss" as *;
 
-.forecast {
-    height: 400px;
-}
-
 .carousel {
     position: relative;
     width: 80%;

@@ -2,10 +2,6 @@
 @use "../../../styles/mixins/misc.scss" as *;
 @use "../../../styles/mixins/breakpoints.scss" as *;
 
-.forecast {
-    height: 400px;
-}
-
 .carousel {
     position: relative;
     width: 80%;
@@ -34,11 +30,6 @@
 .btnBack {
     left: -20px;
     top: 20%;
-}
-
-.hour {
-    color: $grey-0;
-    font-size: 12px;
 }
 
 @include mobile {

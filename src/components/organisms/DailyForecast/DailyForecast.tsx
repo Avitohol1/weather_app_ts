@@ -27,7 +27,7 @@ const DailyForecast = () => {
             naturalSlideHeight={300}
             naturalSlideWidth={250}
             totalSlides={7}
-            visibleSlides={5}
+            visibleSlides={6}
             isPlaying={true}
             step={1}
             className={styles.carousel}

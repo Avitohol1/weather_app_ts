@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    gap: 36px;
+    justify-content: space-between;
 }
 
 .temperatureContainer {
@@ -16,7 +16,7 @@
 
 .main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     height: 100%;
@@ -26,11 +26,13 @@
 @include mobile {
     .container {
         width: 100%;
+        flex-direction: column;
         text-align: center;
     }
     .main {
         flex-direction: column;
         justify-content: normal;
+        align-items: center;
     }
 }
 
