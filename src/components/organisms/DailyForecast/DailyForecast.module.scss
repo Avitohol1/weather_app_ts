@@ -12,6 +12,24 @@
     text-align: center;
 }
 
+.slide {
+    &:hover {
+        transition: $transition;
+        cursor: pointer;
+        border-radius: $radius;
+        background: $grey-600;
+    }
+}
+
+.isActive {
+    span {
+        color: $yellow-500;
+    }
+    transition: $transition;
+    border-radius: $radius;
+    background: $grey-600;
+}
+
 .btnNext,
 .btnBack {
     cursor: pointer;

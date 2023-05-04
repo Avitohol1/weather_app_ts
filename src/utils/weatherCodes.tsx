@@ -249,28 +249,28 @@ const weatherCodes: WeatherCodes = {
     95: {
         description: "thunderstorm",
         icon: {
-            xs: <BsCloudLightning size={size_xs} color="#6c30c5" />,
-            s: <BsCloudLightning size={size_s} color="#6c30c5" />,
-            m: <BsCloudLightning size={size_m} color="#6c30c5" />,
-            l: <BsCloudLightning size={size_l} color="#6c30c5" />,
+            xs: <BsCloudLightning size={size_xs} color="#825abe" />,
+            s: <BsCloudLightning size={size_s} color="#825abe" />,
+            m: <BsCloudLightning size={size_m} color="#825abe" />,
+            l: <BsCloudLightning size={size_l} color="#825abe" />,
         },
     },
     96: {
         description: "thunderstorm with slight hail",
         icon: {
-            xs: <BsCloudLightningRain size={size_xs} color="#6c30c5" />,
-            s: <BsCloudLightningRain size={size_s} color="#6c30c5" />,
-            m: <BsCloudLightningRain size={size_m} color="#6c30c5" />,
-            l: <BsCloudLightningRain size={size_l} color="#6c30c5" />,
+            xs: <BsCloudLightningRain size={size_xs} color="#825abe" />,
+            s: <BsCloudLightningRain size={size_s} color="#825abe" />,
+            m: <BsCloudLightningRain size={size_m} color="#825abe" />,
+            l: <BsCloudLightningRain size={size_l} color="#825abe" />,
         },
     },
     99: {
         description: "thunderstorm with heavy hail",
         icon: {
-            xs: <BsCloudLightningRain size={size_xs} color="#6c30c5" />,
-            s: <BsCloudLightningRain size={size_s} color="#6c30c5" />,
-            m: <BsCloudLightningRain size={size_m} color="#6c30c5" />,
-            l: <BsCloudLightningRain size={size_l} color="#6c30c5" />,
+            xs: <BsCloudLightningRain size={size_xs} color="#825abe" />,
+            s: <BsCloudLightningRain size={size_s} color="#825abe" />,
+            m: <BsCloudLightningRain size={size_m} color="#825abe" />,
+            l: <BsCloudLightningRain size={size_l} color="#825abe" />,
         },
     },
     100: {

@@ -34,6 +34,7 @@ const weatherSlice = createSlice({
         },
         setLocation: (state, action: PayloadAction<Location>) => {
             state.location = action.payload
+            state.searchQuery = action.payload.name.toLowerCase()
         },
         changeTab: (state, action: PayloadAction<"daily" | "hourly">) => {
             state.activeTab = action.payload

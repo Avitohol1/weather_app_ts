@@ -13,7 +13,7 @@ import { changeDate } from "../../../store/weatherSlice"
 import ForecastDetail from "../../molecules/ForecastDetail/ForecastDetail"
 
 const DailyForecast = () => {
-    const { daily, mainParams } = useAppSelector((store) => store.weather)
+    const { daily, date, mainParams } = useAppSelector((store) => store.weather)
     const { slides } = useAppSelector((store) => store.carouselWidth)
     const dispatch = useAppDispatch()
 
@@ -40,11 +40,15 @@ const DailyForecast = () => {
                 {Object.keys(daily).map((day, index) => {
                     const temp: number = daily[day]["temperature"]
                     const weathercode: number = daily[day]["weathercode"]
+                    const isActive = day === date
                     return (
                         <Slide
                             key={index}
                             index={index}
                             onClick={() => handleDayChange(day)}
+                            className={`${styles.slide} ${
+                                isActive ? styles.isActive : ""
+                            }`}
                         >
                             <ForecastDetail
                                 icon={weatherCodes[weathercode].icon.xs}

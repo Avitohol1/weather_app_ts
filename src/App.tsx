@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "./store/store"
 import { useState, useEffect } from "react"
-import { getSearchSuggestions, toggleDropdown } from "./store/weatherSlice"
+import { toggleDropdown } from "./store/weatherSlice"
 import Search from "./components/organisms/Search/Search"
 import Forecast from "./components/organisms/Forecast/Forecast"
 import Loader from "./components/atoms/Loader/Loader"
@@ -8,7 +8,7 @@ import MainWeather from "./components/molecules/MainWeather/MainWeather"
 import { setSlides } from "./store/carouselWidthSlice"
 
 const App = (): JSX.Element => {
-    const { searchQuery, isLoading, daily } = useAppSelector((store) => store.weather)
+    const { isLoading, daily } = useAppSelector((store) => store.weather)
     const [screenWidth, setScreenWidth] = useState<number>(0)
     const dispatch = useAppDispatch()
 
@@ -32,15 +32,13 @@ const App = (): JSX.Element => {
     }, [])
 
     useEffect(() => {
-        dispatch(getSearchSuggestions())
-    }, [searchQuery])
-
-    useEffect(() => {
         const updateScreenWidth = () => {
             setScreenWidth(window.innerWidth)
         }
 
         window.addEventListener("resize", updateScreenWidth)
+
+        updateScreenWidth()
 
         if (screenWidth <= 468) {
             dispatch(setSlides(3))

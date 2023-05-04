@@ -1,7 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../store/store"
 import { handleSearchQueryChange } from "../../../store/weatherSlice"
 import { ChangeEvent } from "react"
-import { BiSearch } from "react-icons/bi"
 import styles from "./InputField.module.scss"
 
 const InputField = () => {
@@ -14,7 +13,7 @@ const InputField = () => {
     }
 
     return (
-        <div className={styles.container}>
+        <form className={styles.container} onSubmit={(e) => e.preventDefault()}>
             <input
                 className={styles.input}
                 type="text"
@@ -22,10 +21,7 @@ const InputField = () => {
                 value={searchQuery}
                 onChange={handleChange}
             />
-            <div className={styles.searchBtnContainer}>
-                <BiSearch className={styles.searchBtn} />
-            </div>
-        </div>
+        </form>
     )
 }
 

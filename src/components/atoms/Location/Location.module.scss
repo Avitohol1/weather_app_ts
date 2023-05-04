@@ -1,7 +1,7 @@
 @use "../../../styles/mixins/colors.scss" as *;
 
 .h1 {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 400;
     color: $grey-200;
     font-weight: 400;
@@ -10,5 +10,6 @@
 
 .description {
     font-weight: 600;
+    text-transform: capitalize;
     color: $grey-100;
 }
