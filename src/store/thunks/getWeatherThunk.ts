@@ -48,8 +48,8 @@ export const getWeatherThunk = async (_: void, thunkAPI: any) => {
         for (let i: number = 0; i < 7; i++) {
             const timeKey = daily.time[i]
             const weathercode = daily.weathercode[i]
-            const sunset = daily.sunset[i]
-            const sunrise = daily.sunrise[i]
+            const sunset = dayjs(daily.sunset[i]).format("HH:mm")
+            const sunrise = dayjs(daily.sunrise[i]).format("HH:mm")
             const apparent_temperature_min = daily.apparent_temperature_min[i]
             const apparent_temperature_max = daily.apparent_temperature_max[i]
             const windspeed = daily.windspeed_10m_max[i]

@@ -15,6 +15,7 @@ import ForecastDetail from "../../molecules/ForecastDetail/ForecastDetail"
 
 export const HourlyForecast = () => {
     const { hourly, mainParams } = useAppSelector((store) => store.weather)
+    const { slides } = useAppSelector((store) => store.carouselWidth)
 
     const units = mainParams.tempUnit === "celsius" ? "°C" : "°F"
 
@@ -23,7 +24,7 @@ export const HourlyForecast = () => {
             naturalSlideHeight={300}
             naturalSlideWidth={250}
             totalSlides={36}
-            visibleSlides={6}
+            visibleSlides={slides}
             isPlaying={true}
             step={2}
             className={styles.carousel}

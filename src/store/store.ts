@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux"
 import weatherSlice from "./weatherSlice"
+import carouselWidthSlice from "./carouselWidthSlice"
 
 export const store = configureStore({
     reducer: {
         weather: weatherSlice,
+        carouselWidth: carouselWidthSlice,
     },
 })
 
