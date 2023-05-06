@@ -23,7 +23,7 @@ export const HourlyForecast = () => {
         <CarouselProvider
             naturalSlideHeight={300}
             naturalSlideWidth={250}
-            totalSlides={36}
+            totalSlides={24}
             visibleSlides={slides}
             isPlaying={true}
             step={2}

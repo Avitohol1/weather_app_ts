@@ -37,6 +37,10 @@
 }
 
 @include tablet {
+    .container {
+        flex-direction: column;
+        gap: 80px;
+    }
     .main {
         flex-direction: column;
         justify-content: normal;
