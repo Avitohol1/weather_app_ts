@@ -9,6 +9,7 @@ type Icons = {
     [key: string]: JSX.Element
 }
 
+// Icons for the weather details
 const icons: Icons = {
     sunrise: <BsSunrise />,
     sunset: <BsSunset />,

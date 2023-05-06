@@ -1,3 +1,5 @@
+// This file contains the appropriate descriptions and weather icons for each weather code
+
 import {
     BsSun,
     BsCloudSun,
@@ -15,6 +17,7 @@ import { BiDroplet } from "react-icons/bi"
 import { WiDayRainMix, WiDayRain, WiDaySnow } from "react-icons/wi"
 import { WeatherCodes } from "../types/WeatherCodes"
 
+// Sizes for the weather icons
 const size_xs = 30
 const size_s = 42
 const size_m = 60
@@ -273,6 +276,7 @@ const weatherCodes: WeatherCodes = {
             l: <BsCloudLightningRain size={size_l} color="#825abe" />,
         },
     },
+    // if no weather code is found
     100: {
         description: "error",
         icon: {},

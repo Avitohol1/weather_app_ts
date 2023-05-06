@@ -1,3 +1,5 @@
+// See https://open-meteo.com/en/docs for more info on the url parameters
+
 const urlParams: { [k: string]: string }[] = [
     {
         hourly: "temperature_2m,relativehumidity_2m,apparent_temperature,precipitation_probability,precipitation,rain,showers,snowfall,weathercode,surface_pressure,visibility,windspeed_10m,winddirection_10m,windgusts_10m,uv_index,is_day",

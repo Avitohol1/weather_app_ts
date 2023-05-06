@@ -13,10 +13,12 @@ const App = (): JSX.Element => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        // Check where user clicks
         const checkClickLocation = (e: any) => {
-            const arr = [...e.composedPath()]
+            const arr = [...e.composedPath()] // returns objects in the event path
             const isSearch: boolean = arr.some((el) => {
                 if (el.id) {
+                    // if user clicks on the input field or a search result do not close dropdown
                     if (el.id.includes("search") || el.id.includes("searchResult")) {
                         return false
                     }
@@ -32,6 +34,8 @@ const App = (): JSX.Element => {
     }, [])
 
     useEffect(() => {
+        // Setting the number of forecast slides dynamically
+        // based on screen size
         const updateScreenWidth = () => {
             setScreenWidth(window.innerWidth)
         }

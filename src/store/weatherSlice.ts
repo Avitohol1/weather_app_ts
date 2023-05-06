@@ -68,6 +68,7 @@ const weatherSlice = createSlice({
             .addCase(getSearchSuggestions.pending, (state) => {})
             .addCase(getSearchSuggestions.fulfilled, (state, action) => {
                 if (state.searchQuery.length > 2) {
+                    // Only if search query is longer than 2 letters
                     state.searchSuggestions = action.payload
                 } else {
                     state.searchSuggestions = []

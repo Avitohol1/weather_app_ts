@@ -1,3 +1,4 @@
+// Keywords for uv index values
 const uvIndex = (code: number): string => {
     if (code === 1 || code === 2) {
         return "low"
