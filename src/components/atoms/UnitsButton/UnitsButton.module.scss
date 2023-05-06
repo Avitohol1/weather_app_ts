@@ -21,12 +21,12 @@
 .tempUnit {
     cursor: pointer;
     &:hover {
-        color: $cyan-500;
+        color: $yellow-600;
     }
 }
 
 .active {
-    color: $cyan-500;
+    color: $yellow-600;
     font-weight: 500;
 }
 

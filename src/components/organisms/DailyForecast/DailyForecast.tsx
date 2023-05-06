@@ -41,6 +41,14 @@ const DailyForecast = () => {
                     const temp: number = daily[day]["temperature"]
                     const weathercode: number = daily[day]["weathercode"]
                     const isActive = day === date
+                    let forecastDay: string = dayjs(day).format("DD.MM")
+                    if (index === 0) {
+                        // first item is today's forecast
+                        forecastDay = "today"
+                    } else if (index === 1) {
+                        // second item is tomorrow's forecast
+                        forecastDay = "tomorrow"
+                    }
                     return (
                         <Slide
                             key={index}
@@ -52,7 +60,7 @@ const DailyForecast = () => {
                         >
                             <ForecastDetail
                                 icon={weatherCodes[weathercode].icon.xs}
-                                time={dayjs(day).format("DD.MM")}
+                                time={forecastDay}
                                 temp={temp}
                                 units={units}
                             />
