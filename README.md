@@ -5,11 +5,11 @@ This is my second weather app project. The first one was built with javascript, 
 ## Screenshots
 
 Search
-![App Screenshot](https://i.ibb.co/2t8zsqN/weather-app-1.png)
+![App Screenshot](https://i.postimg.cc/0jmbgxh1/1.jpg)
 Main (hourly)
-![App Screenshot](https://i.ibb.co/fDVPSjC/weather-app-2.png)
+![App Screenshot](https://i.postimg.cc/HsDrwc7Y/2.jpg)
 Main (daily)
-![App Screenshot](https://i.ibb.co/Y0hWRw6/weather-app-3.png)
+![App Screenshot](https://i.postimg.cc/bNxs3yQQ/3.jpg)
 
 ## How I Made It
 
