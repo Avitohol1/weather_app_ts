@@ -17,7 +17,6 @@ export const getWeatherThunk = async (_: void, thunkAPI: any) => {
         const res = await customFetchWeather.get("", { params: { ...params } })
         const { data } = res
         const { hourly, daily } = data
-
         let hourlyDetails: HourlyWeatherType = {}
         let dailyDetails: DailyWeatherType = {}
         let weatherData: {

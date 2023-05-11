@@ -22,7 +22,7 @@ const SearchSuggestions = () => {
     }
 
     return (
-        <ul className={styles.container}>
+        <ul className={styles.container} role="search-suggestions">
             {searchSuggestions?.length > 0 ? (
                 searchSuggestions.map((el: Location) => {
                     const { id } = el
