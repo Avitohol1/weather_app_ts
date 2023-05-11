@@ -11,7 +11,6 @@ export const getSearchSuggestionsThunk = async (_: void, thunkAPI: any) => {
         const res = await customFetchGeoCoding.get("", {
             params: { ...urlParams },
         })
-        console.log(JSON.stringify(res.data.results))
         return res.data.results
     } catch (err) {
         if (typeof err === "string") {
