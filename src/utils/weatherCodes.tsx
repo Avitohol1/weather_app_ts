@@ -18,10 +18,10 @@ import { WiDayRainMix, WiDayRain, WiDaySnow } from "react-icons/wi"
 import { WeatherCodes } from "../types/WeatherCodes"
 
 // Sizes for the weather icons
-const size_xs = 30
-const size_s = 42
-const size_m = 60
-const size_l = 90
+const size_xs: number = 30
+const size_s: number = 42
+const size_m: number = 60
+const size_l: number = 90
 
 const weatherCodes: WeatherCodes = {
     0: {

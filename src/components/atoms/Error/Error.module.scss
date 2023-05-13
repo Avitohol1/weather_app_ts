@@ -1,0 +1,8 @@
+@use "../../../styles/mixins/colors.scss" as *;
+
+.error {
+    color: $yellow-600;
+    text-decoration: underline;
+    font-weight: 400;
+    margin-top: 3em;
+}

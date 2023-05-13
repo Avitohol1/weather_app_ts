@@ -6,11 +6,14 @@ import Forecast from "./components/organisms/Forecast/Forecast"
 import Loader from "./components/atoms/Loader/Loader"
 import MainWeather from "./components/molecules/MainWeather/MainWeather"
 import { setSlides } from "./store/carouselWidthSlice"
+import Error from "./components/atoms/Error/Error"
 
 const App = (): JSX.Element => {
-    const { isLoading, daily } = useAppSelector((store) => store.weather)
+    const { isLoading, daily, msg } = useAppSelector((store) => store.weather)
     const [screenWidth, setScreenWidth] = useState<number>(0)
     const dispatch = useAppDispatch()
+    const isError = msg.type === "error"
+    let content: JSX.Element = <></>
 
     useEffect(() => {
         // Check where user clicks
@@ -28,6 +31,8 @@ const App = (): JSX.Element => {
         }
 
         document.body.addEventListener("click", checkClickLocation)
+
+        // Cleanup function
         return () => {
             document.body.removeEventListener("click", checkClickLocation)
         }
@@ -59,21 +64,31 @@ const App = (): JSX.Element => {
         }
     }, [screenWidth])
 
+    if (isError) {
+        content = <Error text={msg.text} />
+    }
+
+    if (isLoading) {
+        content = (
+            <section className="weather-container">
+                <Loader />
+            </section>
+        )
+    }
+
+    if (Object.keys(daily).length !== 0 && !isError) {
+        content = (
+            <section className="weather-container">
+                <MainWeather />
+                <Forecast />
+            </section>
+        )
+    }
+
     return (
         <main>
             <Search />
-            {isLoading ? (
-                <section className="weather-container">
-                    <Loader />
-                </section>
-            ) : Object.keys(daily).length !== 0 ? (
-                <section className="weather-container">
-                    <MainWeather />
-                    <Forecast />
-                </section>
-            ) : (
-                <></>
-            )}
+            {content}
         </main>
     )
 }
