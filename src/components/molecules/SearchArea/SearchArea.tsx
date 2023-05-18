@@ -5,14 +5,16 @@ import InputField from "../../atoms/InputField/InputField"
 import SearchSuggestions from "../../atoms/SearchSuggestions/SearchSuggestions"
 import Time from "../../atoms/Time/Time"
 import styles from "./SearchArea.module.scss"
+import useDebounce from "../../../hooks/useDebounce"
 
 const SearchArea = () => {
     const { isDropDownOpen, searchQuery } = useAppSelector((store) => store.weather)
     const dispatch = useAppDispatch()
+    const debouncedSearch = useDebounce(searchQuery)
 
     useEffect(() => {
         dispatch(getSearchSuggestions())
-    }, [searchQuery])
+    }, [debouncedSearch])
 
     return (
         <div className={styles.container}>
