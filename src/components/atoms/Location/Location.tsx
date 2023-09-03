@@ -1,17 +1,20 @@
+import Flag from "react-world-flags"
 import styles from "./Location.module.scss"
 
 type PropType = {
     name: string
     country_code: string
-    description: string
+    admin1: string
 }
 
-const Location = ({ name, country_code, description }: PropType) => {
+const Location = ({ name, country_code, admin1 }: PropType) => {
     return (
-        <h1 className={styles.h1}>
-            {name} {country_code} -{" "}
-            <span className={styles.description}>{description}</span>
-        </h1>
+        <section className={styles.location}>
+            <Flag code={country_code} width={30} className={styles.flag} />
+            <div className={styles.titleContainer}>
+                <span className={styles.cityName}>{name},</span> {country_code} ({admin1})
+            </div>{" "}
+        </section>
     )
 }
 

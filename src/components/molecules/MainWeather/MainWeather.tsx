@@ -15,12 +15,15 @@ const MainWeather = () => {
 
     return (
         <article className={styles.container}>
+            <Location
+                name={location.name}
+                country_code={location.country_code}
+                admin1={location.admin1}
+            />
             <div className={styles.main}>
-                <Location
-                    name={location.name}
-                    country_code={location.country_code}
-                    description={weatherCodes[weathercode].description}
-                />
+                <h2 className={styles.description}>
+                    {weatherCodes[weathercode].description}
+                </h2>
                 <div className={styles.temperatureContainer}>
                     <WeatherIcon icon={weatherCodes[weathercode].icon.l} />
                     <Temperature
