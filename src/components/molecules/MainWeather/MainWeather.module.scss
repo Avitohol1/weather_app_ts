@@ -1,64 +1,92 @@
 @use "../../../styles/mixins/breakpoints.scss" as *;
+@use "../../../styles/mixins/colors.scss" as *;
+@use "../../../styles/mixins/misc.scss" as *;
 
 .container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 3em;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-top: 3em;
 
-    .main {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
-        height: 100%;
-        animation: fadeIn 1s;
+	.main {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		height: 100%;
 
-        .description {
-            text-transform: capitalize;
-            padding: 0;
-            color: #fff;
-        }
+		.description {
+			display: none;
+			position: absolute;
+			top: 120px;
+			left: 60px;
+			text-transform: capitalize;
+			padding: 0;
+			background-color: $grey-0;
+			padding: 0.25em 0.75em;
+			border-radius: $radius;
+			color: $cyan-900;
+			box-shadow: 0px 4px 8px rgba($blue-800, 0.33);
+			transition: all 0.5s ease-in-out;
+			animation: fadeIn 2.4s;
+		}
 
-        .temperatureContainer {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: 18px;
-        }
-    }
+		.temperatureContainer {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 18px;
+
+			&:hover {
+				.description {
+					display: block;
+				}
+			}
+		}
+	}
 }
 
 @include mobile {
-    .container {
-        width: 100%;
-        flex-direction: column;
-        text-align: center;
-    }
-    .main {
-        flex-direction: column;
-        justify-content: normal;
-        align-items: center;
-    }
+	.container {
+		width: 100%;
+		flex-direction: column;
+		text-align: center;
+	}
+	.main {
+		flex-direction: column;
+		justify-content: normal;
+		align-items: center;
+	}
 }
 
 @include tablet {
-    .container {
-        flex-direction: column;
-        gap: 80px;
-    }
-    .main {
-        flex-direction: column;
-        justify-content: normal;
-    }
+	.container {
+		flex-direction: column;
+		gap: 80px;
+	}
+	.main {
+		flex-direction: column;
+		justify-content: normal;
+	}
 }
 
 @keyframes fadeIn {
-    0% {
-        opacity: 0%;
-    }
-    100% {
-        opacity: 100%;
-    }
+	0% {
+		opacity: 0%;
+	}
+	100% {
+		opacity: 100%;
+	}
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 100%;
+	}
+
+	to {
+		opacity: 0%;
+	}
 }
