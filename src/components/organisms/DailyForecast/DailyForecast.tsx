@@ -1,10 +1,10 @@
 import { useAppDispatch, useAppSelector } from "../../../store/store"
 import {
-    CarouselProvider,
-    Slider,
-    Slide,
-    ButtonBack,
-    ButtonNext,
+	CarouselProvider,
+	Slider,
+	Slide,
+	ButtonBack,
+	ButtonNext,
 } from "pure-react-carousel"
 import dayjs from "dayjs"
 import weatherCodes from "../../../utils/weatherCodes"
@@ -13,67 +13,67 @@ import { changeDate } from "../../../store/weatherSlice"
 import ForecastDetail from "../../molecules/ForecastDetail/ForecastDetail"
 
 const DailyForecast = () => {
-    const { daily, date, mainParams } = useAppSelector((store) => store.weather)
-    const { slides } = useAppSelector((store) => store.carouselWidth)
-    const dispatch = useAppDispatch()
+	const { daily, date, mainParams } = useAppSelector((store) => store.weather)
+	const { slides } = useAppSelector((store) => store.carouselWidth)
+	const dispatch = useAppDispatch()
 
-    const units = mainParams.tempUnit === "celsius" ? "°C" : "°F"
+	const units = mainParams.tempUnit === "celsius" ? "°C" : "°F"
 
-    const handleDayChange = (day: string) => {
-        dispatch(changeDate(day))
-    }
+	const handleDayChange = (day: string) => {
+		dispatch(changeDate(day))
+	}
 
-    return (
-        <CarouselProvider
-            naturalSlideHeight={300}
-            naturalSlideWidth={250}
-            totalSlides={7}
-            visibleSlides={slides}
-            isPlaying={true}
-            step={1}
-            className={styles.carousel}
-        >
-            <ButtonBack className={styles.btnBack}>
-                <span>&lt;</span>
-            </ButtonBack>
-            <Slider className={styles.slider}>
-                {Object.keys(daily).map((day, index) => {
-                    const temp: number = daily[day]["temperature"]
-                    const weathercode: number = daily[day]["weathercode"]
-                    const isActive = day === date
-                    let forecastDay: string = dayjs(day).format("DD.MM")
-                    if (index === 0) {
-                        // first item is today's forecast
-                        forecastDay = "today"
-                    } else if (index === 1) {
-                        // second item is tomorrow's forecast
-                        forecastDay = "tomorrow"
-                    }
-                    return (
-                        <Slide
-                            key={index}
-                            index={index}
-                            onClick={() => handleDayChange(day)}
-                            className={`${styles.slide} ${
-                                isActive ? styles.isActive : ""
-                            }`}
-                        >
-                            <ForecastDetail
-                                icon={weatherCodes[weathercode].icon.xs}
-                                time={forecastDay}
-                                temp={temp}
-                                units={units}
-                            />
-                        </Slide>
-                    )
-                })}
-            </Slider>
+	return (
+		<CarouselProvider
+			naturalSlideHeight={300}
+			naturalSlideWidth={250}
+			totalSlides={7}
+			visibleSlides={slides}
+			isPlaying={true}
+			step={1}
+			className={styles.carousel}
+		>
+			<ButtonBack className={styles.btnBack}>
+				<span>&lt;</span>
+			</ButtonBack>
+			<Slider className={styles.slider}>
+				{Object.keys(daily).map((day, index) => {
+					const temp: number = daily[day]["temperature"]
+					const weathercode: number = daily[day]["weathercode"]
+					const isActive = day === date
+					let forecastDay: string = dayjs(day).format("DD.MM")
+					if (index === 0) {
+						// first item is today's forecast
+						forecastDay = "today"
+					} else if (index === 1) {
+						// second item is tomorrow's forecast
+						forecastDay = "tomorrow"
+					}
+					return (
+						<Slide
+							key={index}
+							index={index}
+							onClick={() => handleDayChange(day)}
+							className={`${styles.slide} ${
+								isActive ? styles.isActive : ""
+							}`}
+						>
+							<ForecastDetail
+								icon={weatherCodes[weathercode].icon.xs}
+								time={forecastDay}
+								temp={temp}
+								units={units}
+							/>
+						</Slide>
+					)
+				})}
+			</Slider>
 
-            <ButtonNext className={styles.btnNext}>
-                <span>&gt;</span>
-            </ButtonNext>
-        </CarouselProvider>
-    )
+			<ButtonNext className={styles.btnNext}>
+				<span>&gt;</span>
+			</ButtonNext>
+		</CarouselProvider>
+	)
 }
 
 export default DailyForecast

@@ -5,6 +5,7 @@ import WeatherIcon from "../../atoms/WeatherIcon/WeatherIcon"
 import Details from "../Details/Details"
 import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./MainWeather.module.scss"
+import dayjs from "dayjs"
 
 type Temp = "°C" | "°F"
 
@@ -25,6 +26,9 @@ const MainWeather = () => {
 				admin1={location.admin1}
 			/>
 			<div className={styles.main}>
+				<h4 className={styles.forecastDate}>
+					{dayjs(date).format("MMMM D")}
+				</h4>
 				<div className={styles.temperatureContainer}>
 					<WeatherIcon
 						icon={weatherCodes[weathercode].icon.l}

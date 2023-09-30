@@ -17,6 +17,10 @@
 		align-items: flex-start;
 		height: 100%;
 
+		.forecastDate {
+			color: $grey-0;
+		}
+
 		.description {
 			display: none;
 			position: absolute;
