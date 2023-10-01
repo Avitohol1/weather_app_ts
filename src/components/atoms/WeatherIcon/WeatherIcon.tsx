@@ -2,7 +2,7 @@ import styles from "./WeatherIcon.module.scss"
 
 type Props = {
 	icon: JSX.Element
-	className: string
+	className?: string
 }
 
 const WeatherIcon = ({ icon, className }: Props) => {
