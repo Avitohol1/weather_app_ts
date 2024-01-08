@@ -39,7 +39,7 @@ const DailyForecast = () => {
 			step={1}
 			className={styles.carousel}
 		>
-			<div ref={ref} style={{ backgroundColor: "green" }}>
+			<div ref={ref}>
 				<ButtonBack className={styles.btnBack}>
 					<span>&lt;</span>
 				</ButtonBack>
