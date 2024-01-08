@@ -27,7 +27,7 @@ const DailyForecast = () => {
 	// Get mouse position
 	// This is used to stop the carousel from playing on mouse hover
 	// Ref is attached to a div inside the CarouselProvider
-	const [_, ref, isIntersecting, xIntersecting, yIntersecting] = useMouse()
+	const [_, ref, isIntersecting] = useMouse()
 
 	return (
 		<CarouselProvider
@@ -39,10 +39,6 @@ const DailyForecast = () => {
 			step={1}
 			className={styles.carousel}
 		>
-			{isIntersecting && <p style={{ color: "red" }}>YES</p>}
-			{xIntersecting && <p style={{ color: "green" }}>X INTERS</p>}
-			{yIntersecting && <p style={{ color: "blue" }}>Y INTERS</p>}
-
 			<div ref={ref} style={{ backgroundColor: "green" }}>
 				<ButtonBack className={styles.btnBack}>
 					<span>&lt;</span>
