@@ -1,11 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../store/store"
-import {
-	CarouselProvider,
-	Slider,
-	Slide,
-	ButtonBack,
-	ButtonNext,
-} from "pure-react-carousel"
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel"
 import dayjs from "dayjs"
 import weatherCodes from "../../../utils/weatherCodes"
 import styles from "./DailyForecast.module.scss"
@@ -58,12 +52,10 @@ const DailyForecast = () => {
 						}
 						return (
 							<Slide
-								key={index}
+								key={day}
 								index={index}
 								onClick={() => handleDayChange(day)}
-								className={`${styles.slide} ${
-									isActive ? styles.isActive : ""
-								}`}
+								className={`${styles.slide} ${isActive ? styles.isActive : ""}`}
 							>
 								<ForecastDetail
 									icon={weatherCodes[weathercode].icon.xs}

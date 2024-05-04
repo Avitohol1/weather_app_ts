@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../../store/store"
-import { DetailsObj_1, DetailsObj_2 } from "./detailsObj"
+import { DetailsObj_1, DetailsObj_2 } from "./detailsObj.types"
 import units from "../../../utils/units"
 import Detail from "../../atoms/Detail/Detail"
 import styles from "./Details.module.scss"
@@ -68,20 +68,18 @@ const Details = () => {
 		<section className={styles.container}>
 			<ul className={styles.group1}>
 				{Object.keys(detailsObj_1).map((detail) => {
-					const currVal =
-						detailsObj_1[detail as keyof typeof detailsObj_1]
+					const currVal = detailsObj_1[detail as keyof typeof detailsObj_1]
 					const { text, key, unit, uv_code } = currVal
 
-					return <Detail detail={{ text, key, unit, uv_code }} />
+					return <Detail key={key} detail={{ text, key, unit, uv_code }} />
 				})}
 			</ul>
 			<ul className={styles.group2}>
 				{Object.keys(detailsObj_2).map((detail) => {
-					const currVal =
-						detailsObj_2[detail as keyof typeof detailsObj_2]
+					const currVal = detailsObj_2[detail as keyof typeof detailsObj_2]
 					const { text, key, unit, uv_code } = currVal
 
-					return <Detail detail={{ text, key, unit, uv_code }} />
+					return <Detail key={key} detail={{ text, key, unit, uv_code }} />
 				})}
 			</ul>
 		</section>

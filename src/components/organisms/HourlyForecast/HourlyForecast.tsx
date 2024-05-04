@@ -1,12 +1,6 @@
 import { useAppSelector } from "../../../store/store"
 import weatherCodes from "../../../utils/weatherCodes"
-import {
-	CarouselProvider,
-	Slider,
-	Slide,
-	ButtonBack,
-	ButtonNext,
-} from "pure-react-carousel"
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from "pure-react-carousel"
 import "pure-react-carousel/dist/react-carousel.es.css"
 
 import styles from "./HourlyForecast.module.scss"
@@ -44,7 +38,7 @@ export const HourlyForecast = () => {
 						const temp: number = hourly[hour]["temperature_2m"]
 						const weathercode: number = hourly[hour]["weathercode"]
 						return (
-							<Slide key={index} index={index}>
+							<Slide key={hour} index={index}>
 								<ForecastDetail
 									icon={weatherCodes[weathercode].icon.xs}
 									time={dayjs(hour).format("HH:mm")}
