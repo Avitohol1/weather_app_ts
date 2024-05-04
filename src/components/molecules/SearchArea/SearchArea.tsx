@@ -8,21 +8,21 @@ import styles from "./SearchArea.module.scss"
 import useDebounce from "../../../hooks/useDebounce"
 
 const SearchArea = () => {
-    const { isDropDownOpen, searchQuery } = useAppSelector((store) => store.weather)
-    const dispatch = useAppDispatch()
-    const debouncedSearch = useDebounce(searchQuery)
+	const { isDropDownOpen, searchQuery } = useAppSelector((store) => store.weather)
+	const dispatch = useAppDispatch()
+	const debouncedSearch = useDebounce(searchQuery)
 
-    useEffect(() => {
-        dispatch(getSearchSuggestions())
-    }, [debouncedSearch])
+	useEffect(() => {
+		dispatch(getSearchSuggestions())
+	}, [debouncedSearch])
 
-    return (
-        <div className={styles.container}>
-            <InputField />
-            {isDropDownOpen && <SearchSuggestions />}
-            <Time />
-        </div>
-    )
+	return (
+		<div className={styles.container}>
+			<InputField />
+			{isDropDownOpen && <SearchSuggestions />}
+			<Time />
+		</div>
+	)
 }
 
 export default SearchArea
